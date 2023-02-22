@@ -1,0 +1,14 @@
+body {
+    /* Can alternatively define in html {} or :root {} */
+    color:;
+    background-color:#fafafa;
+    font-family: 'Roboto Mono', monospace, Arial, Helvetica, sans-serif;
+    font-size: ;
+    margin: ;
+    padding: ;
+}
+
+.App{
+    min-height: 100vh;
+    display: flex;
+}
