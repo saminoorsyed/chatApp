@@ -1,7 +1,3 @@
-#MongoDB
-
-mongodb+srv://Sami:Andrea1990.@cluster0.hrirt3m.mongodb.net/?retryWrites=true&w=majority
-
 # chatApp
 
 Going through building a chat app On the mer stack with a tutorial

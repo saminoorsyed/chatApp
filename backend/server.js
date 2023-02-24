@@ -5,6 +5,8 @@ const {chats} = require("./data/dummyData");
 const connectDB = require('./config/db');
 const colors = require('colors'); //makes listening output stand out
 const userRoutes = require('./routes/userRoutes');
+const {notFound, errorHandler} = require('./middleware/middlewareErrors');
+
 
 dotenv.config();
 connectDB()
