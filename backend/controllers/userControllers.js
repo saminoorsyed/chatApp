@@ -6,7 +6,7 @@ const registerUser = asyncHandler(async(req, res) =>{
     const {name, email, password, pic} = req.body;
 
     if (!name || !email || !password){
-        resizeBy.status(400);
+        res.status(400);
         throw new Error("Please enter all the Fields");
     }
     const userExists = await User.findOne({email});
@@ -54,4 +54,21 @@ const authUser =asyncHandler(async(req,res) => {
     };
 })
 
-module.exports = {registerUser, authUser}
+//  /api/users?search=email
+// consider making regex exact so that pattern matching regex does not select wrong users id ample@address.com & example@address.com (ample is in example)
+const allUsers = asyncHandler(async(req,res) =>{
+    const keyword = req.query.search 
+        ? {
+            $or:[
+                // options 'i' means case insensitive
+                {name: {$regex: req.query.search, $options: 'i'}},
+                {email: {$regex: req.query.search, $options: 'i'}},
+            ],
+        }:{};
+
+    const users = await User.find(keyword).find({_id:{$ne: req.user._id}});
+    res.send(users);
+});
+
+
+module.exports = {registerUser, authUser, allUsers}

@@ -1,11 +1,18 @@
 "use strict"; 
+// import depenencies
 const express = require('express');
+const { application } = require('express');
 const dotenv = require('dotenv');
-const {chats} = require("./data/dummyData");
-const connectDB = require('./config/db');
+// extras
 const colors = require('colors'); //makes listening output stand out
+// mongo db
+const connectDB = require('./config/db');
+// routes
 const userRoutes = require('./routes/userRoutes');
+const chatRoutes = require('./routes/chatRoutes');
+// middleware
 const {notFound, errorHandler} = require('./middleware/middlewareErrors');
+
 
 
 dotenv.config();
@@ -19,6 +26,7 @@ app.get('/', (req, res) =>{
 });
 
 app.use('/api/user', userRoutes);
+app.use('/api/chat', chatRoutes)
 
 app.use(notFound);
 app.use(errorHandler);
